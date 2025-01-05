@@ -1,6 +1,7 @@
 # Difference Array Technique
 
-This repository is dedicated to explaining the **Difference Array Technique** using two LeetCode problems: **LeetCode 370: Range Addition** and **LeetCode 2381: Shifting Letters**. The solutions are implemented using this technique, and the detailed explanation of the method is provided below.
+This repository is dedicated to explaining the **Difference Array Technique** using two LeetCode problems: **LeetCode 370: Range Addition** and **LeetCode 2381: Shifting Letters**. 
+The solutions are implemented using this technique, and the detailed explanation of the method is provided below.
 
 ## Difference Array Technique
 
