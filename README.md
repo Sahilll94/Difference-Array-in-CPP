@@ -1,40 +1,76 @@
-# Difference Array
+# Difference Array Technique
 
-The instance of Difference array is **LeetCode 370: Range Addition** problem, which is only available to premium users on LeetCode. The solution is implemented using the **Difference Array Technique** and is provided in the `main.cpp` file.
-
-## Problem Statement
-The problem involves performing several range updates on an array. Each update consists of adding a value to all elements between indices `i` and `j` (inclusive). After applying all the updates, the task is to return the final array.
-
-For more details, you can check the problem description on [LeetCode 370](https://leetcode.ca/all/370.html).
+This repository is dedicated to explaining the **Difference Array Technique** using two LeetCode problems: **LeetCode 370: Range Addition** and **LeetCode 2381: Shifting Letters**. The solutions are implemented using this technique, and the detailed explanation of the method is provided below.
 
 ## Difference Array Technique
 
-The **Difference Array Technique** is a powerful and efficient way to apply multiple range updates on an array in constant time. Instead of updating all elements in the range, we keep track of the changes at the start and end of the range using a **difference array**.
+The **Difference Array Technique** is a very efficient method used to apply range updates on an array. Instead of directly modifying the entire range for each update, we record the changes only at the boundaries of the range. This allows us to apply updates in constant time, and then compute the final values in a linear pass.
 
-### How It Works
+### How the Difference Array Technique Works
 
-1. **Initial Setup:** 
-   We start by initializing a difference array `diff` of size `n + 1` (where `n` is the size of the original array) and set all values to 0.
+1. **Initial Setup:**
+   - We start with an array initialized to zero, and a difference array (`diff`) of the same size with all values set to zero.
+   
+2. **Apply Range Updates:**
+   - For a given operation that updates the subarray between indices `i` and `j` by a value `val`, we:
+     - Increment `diff[i]` by `val` (to mark the start of the update).
+     - Decrement `diff[j + 1]` by `val` (to mark the end of the update, ensuring that the value stops propagating beyond index `j`).
 
-2. **Apply Updates:**
-   For each range update `(i, j, val)`:
-   - Increment `diff[i]` by `val`.
-   - Decrement `diff[j + 1]` by `val` (if `j + 1` is within bounds).
+3. **Compute Final Array:**
+   - To obtain the final array after all updates, we compute the prefix sum of the difference array. This step gives us the cumulative effect of all the range updates, producing the modified array.
 
-3. **Final Array:**
-   To obtain the final array after all updates, we compute the prefix sum of the difference array. This allows us to reconstruct the array efficiently.
+### Example: LeetCode 370: Range Addition
 
-### Time Complexity
-- The time complexity for applying each update is **O(1)**.
-- The time complexity for computing the final array is **O(n)**, where `n` is the size of the array.
+**Problem Statement:**
 
-This technique is particularly useful when we have multiple range updates to apply, making it much more efficient than directly updating each element in the range.
+You are given an array of length `n` initialized with all 0's, and you are provided with `k` update operations. Each operation is represented by a triplet `[startIndex, endIndex, inc]`, which means incrementing each element of the subarray `A[startIndex ... endIndex]` (inclusive) by `inc`. The goal is to return the modified array after all operations are applied.
 
-## Solution
+**Example:**
 
-The solution to the problem is provided in the `main.cpp` file. The code uses the Difference Array Technique to efficiently apply all the range updates and compute the final result.
+Input:
+length = 5 updates = [[1, 3, 2], [2, 4, 3], [0, 2, -2]]
+Output: [-2, 0, 3, 5, 3]
 
-### Steps:
-1. Create a difference array `diff` of size `n + 1`.
-2. For each update, modify the difference array.
-3. Compute the prefix sum of the difference array to obtain the final result.
+
+### Explanation of the Example:
+
+- **Initial state:**
+[0, 0, 0, 0, 0]
+
+
+- **After applying operation [1, 3, 2]:**
+[0, 2, 2, 2, 0]
+
+
+- **After applying operation [2, 4, 3]:**
+[0, 2, 5, 5, 3]
+
+
+- **After applying operation [0, 2, -2]:**
+[-2, 0, 3, 5, 3]
+
+
+### LeetCode 2381: Shifting Letters
+
+In addition to LeetCode 370, we also have another problem that uses the **Difference Array Technique**: **LeetCode 2381: Shifting Letters**.
+
+In **LeetCode 2381**, the task is to perform a series of range shift operations on a string, where each operation shifts a subset of letters in the string by a certain number of places. The solution to this problem is also based on the difference array technique.
+
+You can find the solution to **LeetCode 2381** in the `LeetCode-2381.cpp` file in this repository.
+
+### Conclusion
+
+The **Difference Array Technique** is a highly efficient method for applying multiple range updates to an array. It is particularly useful when there are a large number of range updates, as it reduces the time complexity of each update from O(n) to O(1). After applying all updates, the final array can be computed in a single pass through the difference array.
+
+In this repository, we have provided two examples of problems from LeetCode where this technique is applied:
+
+1. **LeetCode 370: Range Addition** — Explained and implemented in `LeetCode-370.cpp`.
+2. **LeetCode 2381: Shifting Letters** — Implemented in `LeetCode-2381.cpp`.
+
+Feel free to explore the solutions and the explanation to better understand the difference array technique!
+
+### License
+
+This repository is open for educational purposes. Feel free to contribute, fork, or improve the solutions as needed.
+
+
